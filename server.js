@@ -2,10 +2,8 @@ var express = require('express'),
   routes = require('./routes/slash'),
   recipes = require('./routes/recipes'),
   ingredients = require('./routes/ingredients'),
-  // search = require('yummly/test/search'),
-  // recipe = require('yummly/test/recipe'),
-	data = require('./models/database').database;
-	// path = require('path');
+	data = require('./models/database').database,
+	path = require('path');
 
 var fs = require("fs");
 var app = express();
