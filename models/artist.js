@@ -4,7 +4,7 @@ var mongoClient = require('mongodb').MongoClient;
  * This is the connection URL
  * Give the IP Address / Domain Name (else localhost)
  * The typical mongodb port is 27012
- * The path part (here "mtwocdatabase") is the name of the databas
+ * The path part (here "mtwocdatabase") is the name of the database
  */
 var url = 'mongodb://localhost:27017/mtwocdatabase';
 var mongoDB; // The connected database

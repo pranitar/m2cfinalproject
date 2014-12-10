@@ -1,5 +1,6 @@
 var express = require('express'),
   routes = require('./routes/slash'),
+  // morgan = require('morgan'),
   recipes = require('./routes/recipes'),
   ingredients = require('./routes/ingredients'),
 	data = require('./models/database').database,
@@ -14,7 +15,6 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 app.configure(function(){
   app.set('views', __dirname + '/views'); // Set the directory for views
   app.set('view engine', 'ejs');  // Set the view engine to EJS
-  app.use(express.favicon());	// Return a favicon if requested
   app.use(express.logger('tiny'));	// Log requests to the console.log
   app.use(express.bodyParser());	// Parse the request body into req.body object
   app.use(express.methodOverride()); // Allows you to override HTTP methods on old browsers
@@ -22,43 +22,16 @@ app.configure(function(){
   app.use(express.static(__dirname + '/public'));	// Process static files
 });
 
-// reading db file
-function readFile(filename, defaultData, callbackFn) {
-  fs.readFile(filename, function(err, data) {
-    if (err) {
-      console.log("Error reading file: ", filename);
-      data = defaultData;
-    } else {
-      console.log("Success reading file: ", filename);
-    }
-    if (callbackFn) callbackFn(err, data);
-  });
-}
-
-// writing to db file
-function writeFile(filename, data, callbackFn) {
-  fs.writeFile(filename, data, function(err) {
-    if (err) {
-      console.log("Error writing file: ", filename);
-    } else {
-      console.log("Success writing file: ", filename);
-    }
-    if (callbackFn) callbackFn(err);
-  });
-}
-
 // index page
 app.get('/', routes.pathless);
 //Index page - redirects to index.html and displays a basic search results page
-// app.get('/users', user.list);
-// //- User model - provides a list of users currently also using the app that you can share recipes and messages with
 // app.get('/users/popular', user.popular);
 // // - User model - displays the “Top 5 Most Popular Recipes”
 // app.get('/:ingredient', ingredient.search);
 // // - Ingredient model - provides a list of all the recipes that fit the search criteria of the user (up to 5 ingredient limitation)
 // app.get('/:ingredient/recipes', ingredient.showRecipes);
 // - Ingredient model - provides a list of the top 10 recipes using one specific ingredient provided
-//app.post('/recipe/new', recipe.newPost);
+app.post('/recipes', recipes.newPost);
 // - Recipe model - allows user the ability to add a new recipe
 
 

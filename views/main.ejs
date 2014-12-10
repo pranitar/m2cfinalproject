@@ -13,6 +13,7 @@
 </head>
 
 <body>
+	<div class="col-md-8">
 	<center>
     <h1>Go from Ingredients to Recipe in Seconds!</h1>
 
@@ -28,30 +29,30 @@
 		<label>Ingredient 3: </label>  <input id="ingred3" name="ingred3" type="text" placeholder="e.g. pasta"/> 
 	</div>
 
-   	<br><a href="/recipes">Add a Recipe</a><br>
-
    </center>
+	</div>
   	
-  	<!-- <div class="container">
+  	<div class="col-md-4">
 		<h2>Add Recipe</h2>
 		<div>
-		  <form id="addteamsform" action="javascript:addTeam()">
+		  <form id="addrecipe" action="javascript:addRecipe()">
+		    
 		    <div class="row">
-		      <label>Team:</label>  <input id="teamname-input" name="Team" type="text" placeholder="e.g. Steelers"/> 
+		      <label>Name: </label>  <input id="rname" name="RecipeName" type="text"/> 
 		    </div>
+
 		    <div class="row">
-		      <label>City:</label>  <input id="city-input" name="City" type="text" placeholder="e.g. Pittsburgh"/>
+		      <label>Cuisine: </label>  <input id="rcuisine" name="Cuisine" type="text" />
 		    </div>
-		    <div class="row">
-		      <label>Coach:</label>  <input id="coach-input" name="City" type="text" placeholder="e.g. Mike Tomlin"/>
-		    </div>
+
 		    <div class="row right">
-		      <input id="submitButton" name="Submit"  type="submit" value="Add Team"/>
+		      <input id="submitButton" name="Submit"  type="submit" value="Add Recipe"/>
 		    </div>
+
 		  </form>
 		</div> 
-		
-	</div> -->
+	</div>
+
 
 	<script src="jquery-1.9.0.js"></script>
 	<script src="crud.js"></script>

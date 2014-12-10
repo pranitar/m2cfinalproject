@@ -1,3 +1,20 @@
+var util = require("util");
+var mongoClient = require('mongodb').MongoClient;
+/*
+ * This is the connection URL
+ * Give the IP Address / Domain Name (else localhost)
+ * The typical mongodb port is 27012
+ * The path part (here "mtwocdatabase") is the name of the database
+ */
+var url = 'mongodb://localhost:27017/mtwocdatabase';
+var mongoDB; // The connected database
+// Use connect method to connect to the Server
+mongoClient.connect(url, function(err, db) {
+  if (err) doError(err);
+  console.log("Connected correctly to server");
+  mongoDB = db;
+});
+
 // Global datastore
 var recipes = [];
 var ingredients = [];
@@ -15,34 +32,30 @@ function addRecipe(){
 	newRecipe.ingredients = [];
 	newRecipe.cuisine = tcuisine;
 
-	recipes.push(newRecipe);
-	// console.log("just before calling add/ajax");	
+	recipes.push(newRecipe);	
 	window.add(rname, rcuisine);
 
 	// Clear Inputs
 	$('#rname').val("");
 	$('#rcuisine').val("");
 }
+
 function add(name, cuisine) {
   $.ajax({
     	url: "/recipes",
 		type: "put",
-    	data: {"name": name, "players": [], "cuisine": cuisine},
+    	data: {"name": name, "ingredients": [], "cuisine": cuisine},
     	success: function(data) { }
   });
 }
 
 // edit team
-function editTeam(index){
-	console.log("working?");
-	console.log(index);
+function editRecipe(index){
 	var index = index;
 	var updatedTeam = {};
 
-	console.log("updating team");	
-	var tn = $('#teamname-input').val();
-	var tc = $('#city-input').val();
-	var tco = $('#coach-input').val();
+	var tname = $('#rname').val();
+	var tcuisine = $('#rcuisine').val();
 
 	updatedTeam.name = tn;
 	updatedTeam.city = tc;
