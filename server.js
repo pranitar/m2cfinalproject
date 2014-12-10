@@ -10,6 +10,9 @@ var express = require('express'),
 var fs = require("fs");
 var app = express();
 
+ var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+
 app.configure(function(){
   app.set('views', __dirname + '/views'); // Set the directory for views
   app.set('view engine', 'ejs');  // Set the view engine to EJS
