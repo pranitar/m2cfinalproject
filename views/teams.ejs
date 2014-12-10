@@ -1,0 +1,56 @@
+<!Doctype HTML>
+<html>
+<head>
+        <link rel="stylesheet" href="/../style.css" />
+
+        <title>Recipes</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Recipes - User Favorites</h1>
+        <br>
+         <% if(recipes.length) { %>
+            <% recipes.forEach(function(recipe) { %>
+                    <h2>Name: <%= recipe.rname %> </h2>
+                    <h2>Cuisine: <%= recipe.rcuisine %> </h2>
+                    <h2>Players:</h2> 
+                    <% if (recipe.ingredients.length == 0) { %>
+                        <ul><li>No ingredients have been added<li></ul>
+                    <% } else { %>
+                    <ul>
+                        <% for(i = 0; i < recipe.ingredients.length; i++) { %>
+                            <li><%= recipe.ingredients[i] %></li>
+                        <% } %>
+                    </ul>
+                    <% } %>
+                    <br>
+            <% }) %>
+            <% if (recipes.length == 1) { %>
+                <h3>Edit Recipe</h3>
+                <form id="editRecipe" action="javascript:editRecipe(<%= index %>)">
+                    <div class="row">
+                        <label>Recipe:</label>  <input id="recipename-input" name="recipe" type="text" value= '<%= recipes[0].name %>' /> 
+                    </div>
+                    <div class="row">
+                        <label>City:</label>  <input id="city-input" name="City" type="text" value= '<%= recipes[0].city %>'/>
+                    </div>
+                    <div class="row">
+                        <label>Coach:</label>  <input id="coach-input" name="City" type="text" value= '<%= recipes[0].coach %>'/>
+                    </div>
+                    <div class="row right">
+                        <input id="submitButton" name="Submit"  type="submit" value="Edit recipe"/>
+                    </div>
+                </form>
+				<br>
+			  <form id="deleteForm" action="javascript:deleterecipe(<%= index %>)">
+			    <input name="Submit"  type="submit" value="Delete recipe"/>
+			  </form>
+            <% } %>
+        <% } else { %>
+                <h2>Oops cant find the recipe you're looking for</h2>
+        <% } %>
+    </div>
+    <script src="/../jquery-1.9.0.js"></script>
+    <script src="/../crud.js"></script>
+</body>
+</html>

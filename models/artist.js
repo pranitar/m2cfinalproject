@@ -55,17 +55,3 @@ var doError = function(e) {
         util.debug("ERROR: " + e);
         throw new Error(e);
     }
-
-
-// var Artists = [{firstname:"Alesso", lastname:"", band:"Solo-Artist", genre:"Electronic"},
-// {firstname:"Roger", lastname:"Waters", band:"Pink Floyde", genre:"Rock"},
-// {firstname:"Harry", lastname:"Styles", band:"One Direction", genre:"Pop-Rock"}];
-
-// // function Artist(firstname,lastname,band,genre){
-// // 	this.firstname = firstname;
-// // 	this.lastname = lastname;
-// // 	this.band = band;
-// // 	this.genre = genre;
-// // }
-
-// module.exports = Artists;
