@@ -1,0 +1,14 @@
+<% include ./headPartial.ejs %> <!-- include content from headPartial first -->
+<!-- In an unordered list, iterate through the messages array  -->
+<ul>
+  <!--  Notice with the bracing that the loop goes over a few lines -->
+  <% for (var i = 0; i < messages.length; i++) { %>
+    <!-- As in any loop, this will be repeated for each item in the messages array -->
+    <li>Say <%= messages[i].say %> to <%= messages[i].to %> </li>
+  <% } %> <!--  Close the loop  -->
+</ul>
+<% /* Add in the content from footPartial
+    * Notice that since this is a JavaScript comment, it does not create
+    * html code and is not passed to the browser 
+    */ %>
+<% include ./footPartial.ejs %>
