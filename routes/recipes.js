@@ -18,11 +18,3 @@ exports.newRecipe = function(req, res){
 	    recipe = undefined;
 	  }
 }
-
-// exports.listRecipes = function(req, res){
-// 	var url = req.url.split("/");
-// 	var recipeid = url[2];
-// 	//if (recipeid >= data.length) {res.render('recipes',{recipes:false});};
-
-// 	res.render("recipes");
-// };
