@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 <!-- Optional theme -->
@@ -13,26 +14,26 @@
 </head>
 
 <body>
-  	
-  	<div class="container">
-		<h2>Add Recipe</h2>
-		<div>
-		  <form id="addrecipe" action="javascript:addRecipe()">
-		    <div class="row">
-		      <label>Name: </label>  <input id="rname" name="RecipeName" type="text"/> 
-		    </div>
-		    <div class="row">
-		      <label>Cuisine: </label>  <input id="rcuisine" name="Cuisine" type="text" />
-		    </div>
-		    <div class="row right">
-		      <input id="submitButton" name="Submit"  type="submit" value="Add Team"/>
-		    </div>
-		  </form>
-		</div> 
-		
-	</div>
-
-	<script src="jquery-1.9.0.js"></script>
-	<script src="crud.js"></script>
+	<div class="container">
+        <h1>Recipes - User Favorites</h1>
+        <br>
+         <% if (recipes.length > 0) { %>
+            <% recipes.forEach(function(recipe) { %>
+                    <h2>Name: <%= recipe.name %> </h2>
+                    <h2>Cuisine: <%= recipe.cuisine %> </h2>
+                    <h2>Ingredients:</h2> 
+                    <% if (recipe.ingredients.length == 0) { %>
+                        <ul><li>No ingredients have been added<li></ul>
+                    <% } else { %>
+                    <ul>
+                        <% for (var i = 0; i < recipe.ingredients.length; i++) { %>
+                            <li><%= recipe.ingredients[i] %></li>
+                        <% } %>
+                    </ul>
+                    <% } %>
+                    <br>
+            <% }); %>
+           <% } %>
+    </div>
 </body>
 </html>

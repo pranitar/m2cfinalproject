@@ -1,30 +1,11 @@
-var util = require("util");
-var mongoClient = require('mongodb').MongoClient;
-/*
- * This is the connection URL
- * Give the IP Address / Domain Name (else localhost)
- * The typical mongodb port is 27012
- * The path part (here "mtwocdatabase") is the name of the database
- */
-var url = 'mongodb://localhost:27017/mtwocdatabase';
-var mongoDB; // The connected database
-// Use connect method to connect to the Server
-mongoClient.connect(url, function(err, db) {
-  if (err) doError(err);
-  console.log("Connected correctly to server");
-  mongoDB = db;
-});
-
 // Global datastore
 var recipes = [];
 var ingredients = [];
-var users = [];
 
 // add new recipe
 function addRecipe(){
 	var newRecipe = {};
-
-	// console.log("adding new recipe");	
+	
 	var tname = $('#rname').val();
 	var tcuisine = $('#rcuisine').val();
 
@@ -57,36 +38,29 @@ function editRecipe(index){
 	var tname = $('#rname').val();
 	var tcuisine = $('#rcuisine').val();
 
-	updatedTeam.name = tn;
-	updatedTeam.city = tc;
-	updatedTeam.coach = tco;
+	updatedRecipe.name = tname;
+	updatedRecipe.cuisine = tcuisine;
 
-	window.edit(tn, tco, tc, index);
+	window.edit(tname, tcuisine, index);
 }
-function edit(name, coach, city, index) {
-	console.log(index);
-	console.log("running ajax stuff");	
+function edit(name, cuisine, index) {
   $.ajax({
-    	url: "/teams/" + index,
+    	url: "/recipes/" + index,
 		type: "post",
-    	data: {"name": name, "city": city, "coach": coach, index:index},
+    	data: {"name": rname, "cuisine": rcuisine, index:index},
     	success: function(data) { location.reload() }
   });
 }
 
 // delete team
-function deleteTeam(id){
-	console.log("just before calling ajax-delete");
-	console.log(id);		
+function deleteTeam(id){		
 	window.deletethis(id);
 }
-function deletethis(id) {
-	console.log("running ajax-delete stuff");	
-	console.log(id);	
+function deletethis(id) {	
   $.ajax({
-    	url: "/teams/"+id,
+    	url: "/recipes/"+id,
 		type: "delete",
-    	success: function(data) { window.alert("You sure?"); window.location.assign('/teams'); }
+    	success: function(data) { window.alert("You sure?"); window.location.assign('/recipes'); }
   });
 }
 
@@ -94,38 +68,30 @@ function deletethis(id) {
 function addIngred(){
 	var newIngred = {};
 	
-	var pn = $('#playername-input').val();
-	var pt = $('#team-input').val();
+	var ingredn = $('#ingredname').val();
 
-	newIngred.name = pn;
-	newIngred.team = pt;
+	newIngred.name = ingredn;
 
 	players.push(newIngred);
-	window.addpl(pn, pt);
+	window.adding(ingredn);
 
 	// Clear Inputs
-	$('#playername-input').val("");
-	$('#team-input').val("");
+	$('#ingredname').val("");
 }
-function addpl(name, recipe) {
-	console.log("running ajax stuff");	
+function adding(name, recipe) {	
   $.ajax({
-    	url: "/players",
+    	url: "/ingredients",
 		type: "put",
-    	data: {"name": name, "team": recipe},
+    	data: {"name": name, "recipe": recipe},
     	success: function(data) { }
   });
 }
 
 // edit player
-function editPlayer(pindex, tindex){
+function editIngred(pindex, tindex){
 	var uptdrecipe = {};
 
 	var nm = $('#plname-input').val();
-	var te = $('#recipen-input').val();
-	var tc = $('#city-input').val();
-	var tco = $('#coach-input').val();
-	var pl = $('#players-input').val();
 
 	var playaz = pl.split(",");
 	playaz[pindex] = nm;
@@ -142,21 +108,19 @@ function editpl(name, players, coach, city, pindex, tindex) {
   $.ajax({
     	url: "/recipes/" + tindex + "/players/" + pindex,
 		type: "post",
-    	data: {"name":name, "players":players, "coach":coach, "city":city},
+    	data: {"name":name, "players":players, "coach":coach},
     	success: function(data) {location.reload()}
   });
 }
 
 // delete player
-function deletePlayer(pid, tid){
-	console.log("just before calling ajax-delete");		
-	window.deletethisplayer(pid, tid);
+function deletePlayer(ingredid, recipeid){	
+	window.deleting(ingredid, recipeid);
 }
-function deletethisplayer(pid, tid) {
-	console.log("running ajax-delete stuff");		
+function deleting(ingredid, recipeid) {		
   $.ajax({
-    	url: "/recipes/"+tid+"/players/"+pid,
+    	url: "/recipes/"+recipeid+"/ingredients/"+ingredid,
 		type: "delete",
-    	success: function(data) { window.alert("You sure?"); window.location.assign('/recipes/'+tid+'/players'); }
+    	success: function(data) { window.alert("You sure?"); window.location.assign('/recipes/'+recipeid+'/ingredients'); }
   });
 }

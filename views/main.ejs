@@ -2,40 +2,58 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<link rel='stylesheet' href='/stylesheets/style.css' />
+<link rel='stylesheet' href='../stylesheets/style.css' />
+<!-- <link rel='stylesheet' href='../stylesheets/flat-ui.css' /> -->
+<script src="script.js"></script>
 <title>Ingredients to Recipes in Seconds</title>
 </head>
 
 <body>
+	<div class="col-md-12">
+		<center><h1>Recipe Heaven</h1>
+		<h2> Number 1 Place for Yummy Cuisine</h2></center>
+	</div>
+
 	<div class="col-md-8">
 	<center>
-    <h1>Go from Ingredients to Recipe in Seconds!</h1>
+    <h2>Go from Ingredients to Recipe with Yummly</h2>
 
+	<form name="eg1" id="eg1">
+
+	 <div class="row">
+		<label>Search food: </label>  <input id="search" name="search" type="text" placeholder="dinner"/> 
+	</div>
     <div class="row">
-		<label>Ingredient 1: </label>  <input id="ingred1" name="ingred1" type="text" placeholder="e.g. tomatoes"/> 
+		<label>Ingredient 1: </label>  <input id="ingred1" name="ingred1" type="text" placeholder="tomatoes"/> 
 	</div>
-
 	<div class="row">
-		<label>Ingredient 2: </label>  <input id="ingred2" name="ingred2" type="text" placeholder="e.g. mozzarella"/> 
+		<label>Ingredient 2: </label>  <input id="ingred2" name="ingred2" type="text" placeholder="mozzarella"/> 
 	</div>
-
 	<div class="row">
-		<label>Ingredient 3: </label>  <input id="ingred3" name="ingred3" type="text" placeholder="e.g. pasta"/> 
+		<label>Ingredient 3: </label>  <input id="ingred3" name="ingred3" type="text" placeholder="pasta"/> 
 	</div>
+	<center><button id="submit">Show me what to make</button>
+
+</div>
+
+	</form>
 
    </center>
+
+   <div id ="pics"></div>
 	</div>
   	
   	<div class="col-md-4">
+  		<h2>Show us what you can cook!</h2>
 		<h2>Add Recipe</h2>
-		<div>
-		  <form id="addrecipe" action="javascript:addRecipe()">
+		  <form id="addrecipe">
 		    
 		    <div class="row">
 		      <label>Name: </label>  <input id="rname" name="RecipeName" type="text"/> 
@@ -45,16 +63,19 @@
 		      <label>Cuisine: </label>  <input id="rcuisine" name="Cuisine" type="text" />
 		    </div>
 
-		    <div class="row right">
-		      <input id="submitButton" name="Submit"  type="submit" value="Add Recipe"/>
+		    <div class="row">
+		      <label>Ingredients: </label>  <input id="ingredientName" name="IngredientName" type="text"/> 
+		    </div>
+
+		    <div class="row">
+		      <button id="submitButton">Submit</button>
 		    </div>
 
 		  </form>
-		</div> 
 	</div>
-
-
-	<script src="jquery-1.9.0.js"></script>
-	<script src="crud.js"></script>
+	<div id ="div1"></div>
+	<div id ="div2"></div>
+	<div id ="div3"></div>
+	<div id ="div4"></div>
 </body>
 </html>
